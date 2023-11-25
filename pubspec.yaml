@@ -3,7 +3,7 @@ description: Мобильное приложение для кейтринбур
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.1.5 <4.0.0'
+  sdk: '>=2.19.4 <4.0.0'
 
 dependencies:
   flutter:
