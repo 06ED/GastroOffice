@@ -47,6 +47,13 @@ class HttpClient extends OAuth2Helper {
           headers: headers, body: body, httpClient: httpClient);
 
   @override
+  Future<Response> patch(String url,
+      {Map<String, String>? headers, body, Client? httpClient}) {
+    return super.patch(kServerUrl + url,
+        headers: headers, body: body, httpClient: httpClient);
+  }
+
+  @override
   Future<AccessTokenResponse> refreshToken(
       AccessTokenResponse curTknResp) async {
     AccessTokenResponse? tknResp;

@@ -26,6 +26,15 @@ class _CartRouteState extends State<CartRoute> {
         if (state is CartInitState) {
           return Scaffold(
             appBar: AppBar(
+              actions: [
+                IconButton(
+                  onPressed: () => Navigator.pushNamed(context, "/personalData"),
+                  icon: const Icon(
+                    Icons.account_circle,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
               backgroundColor: const Color.fromARGB(255, 211, 138, 27),
               title: const Text("Корзина"),
             ),
@@ -89,12 +98,12 @@ class _CartRouteState extends State<CartRoute> {
                 ],
               ),
             ),
-            bottomNavigationBar: const NavBar(id: 2),
+            bottomNavigationBar: const NavBar(id: 3),
           );
         }
         return const Scaffold(
           body: Loading(),
-          bottomNavigationBar: NavBar(id: 2),
+          bottomNavigationBar: NavBar(id: 3),
         );
       },
     );

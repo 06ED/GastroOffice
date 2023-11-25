@@ -22,7 +22,15 @@ class _ProductsRouteState extends State<ProductsRoute> {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            backgroundColor: const Color.fromARGB(255, 211, 138, 27),
+            actions: [
+              IconButton(
+                onPressed: () => Navigator.pushNamed(context, "/personalData"),
+                icon: const Icon(
+                  Icons.account_circle,
+                  color: Colors.white,
+                ),
+              ),
+            ],
             title: Text(
               widget.product.title,
               style: const TextStyle(

@@ -30,6 +30,15 @@ class _MainRouteState extends State<MainRoute> {
 
           return Scaffold(
             appBar: AppBar(
+              actions: [
+                IconButton(
+                  onPressed: () => Navigator.pushNamed(context, "/personalData"),
+                  icon: const Icon(
+                    Icons.account_circle,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
               backgroundColor: const Color.fromARGB(255, 211, 138, 27),
               title: const Text(
                 "Меню",
@@ -108,12 +117,12 @@ class _MainRouteState extends State<MainRoute> {
                 ),
               ],
             ),
-            bottomNavigationBar: const NavBar(id: 1),
+            bottomNavigationBar: const NavBar(id: 2),
           );
         }
         return const Scaffold(
           body: Loading(),
-          bottomNavigationBar: NavBar(id: 1),
+          bottomNavigationBar: NavBar(id: 2),
         );
       },
     );

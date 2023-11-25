@@ -22,6 +22,15 @@ class _OfferListRouteState extends State<OfferListRoute> {
         return Scaffold(
           appBar: AppBar(
             title: const Text("Заказы"),
+            actions: [
+              IconButton(
+                onPressed: () => Navigator.pushNamed(context, "/personalData"),
+                icon: const Icon(
+                  Icons.account_circle,
+                  color: Colors.white,
+                ),
+              ),
+            ],
           ),
           body: ListView.builder(
             itemCount: state.offers.length,
@@ -55,12 +64,12 @@ class _OfferListRouteState extends State<OfferListRoute> {
               ),
             ),
           ),
-          bottomNavigationBar: const NavBar(id: 0),
+          bottomNavigationBar: const NavBar(id: 1),
         );
       }
       return const Scaffold(
         body: Loading(),
-        bottomNavigationBar: NavBar(id: 0),
+        bottomNavigationBar: NavBar(id: 1),
       );
     });
   }

@@ -19,7 +19,16 @@ class _SelectOrganizationRouteState extends State<SelectOrganizationRoute> {
         if (state is SelectOrganisationInitState) {
           return Scaffold(
             appBar: AppBar(
-              backgroundColor: const Color.fromARGB(255, 211, 138, 27),
+              actions: [
+                IconButton(
+                  onPressed: () =>
+                      Navigator.pushNamed(context, "/personalData"),
+                  icon: const Icon(
+                    Icons.account_circle,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
               title: const Text(
                 "Выберите организацию",
                 style: TextStyle(

@@ -24,8 +24,16 @@ class _OfferRouteState extends State<OfferRoute> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 211, 138, 27),
         title: Text("Заказ №${widget.index + 1}"),
+        actions: [
+          IconButton(
+            onPressed: () => Navigator.pushNamed(context, "/personalData"),
+            icon: const Icon(
+              Icons.account_circle,
+              color: Colors.white,
+            ),
+          ),
+        ],
       ),
       body: Container(
         padding: const EdgeInsets.all(10),
@@ -103,7 +111,7 @@ class _OfferRouteState extends State<OfferRoute> {
           ],
         ),
       ),
-      bottomNavigationBar: const NavBar(id: 0),
+      bottomNavigationBar: const NavBar(id: 1),
     );
   }
 

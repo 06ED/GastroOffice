@@ -10,7 +10,12 @@ class NavBar extends StatefulWidget {
 }
 
 class _NavBarState extends State<NavBar> {
-  static const kRouteToId = {0: "/offerList", 1: "/main", 2: "/cart"};
+  static const kRouteToId = {
+    0: "/newsList",
+    1: "/offerList",
+    2: "/main",
+    3: "/cart",
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +27,14 @@ class _NavBarState extends State<NavBar> {
       onDestinationSelected: (int index) =>
           Navigator.pushNamed(context, kRouteToId[index]!),
       destinations: const <Widget>[
+        NavigationDestination(
+          icon: Icon(Icons.notification_important),
+          selectedIcon: Icon(
+            Icons.notification_important,
+            color: Colors.white,
+          ),
+          label: "Новости",
+        ),
         NavigationDestination(
           icon: Icon(Icons.local_offer),
           selectedIcon: Icon(
