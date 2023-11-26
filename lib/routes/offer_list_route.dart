@@ -32,38 +32,72 @@ class _OfferListRouteState extends State<OfferListRoute> {
               ),
             ],
           ),
-          body: ListView.builder(
-            itemCount: state.offers.length,
-            itemBuilder: (context, index) => Container(
-              margin: const EdgeInsets.all(10),
-              child: InkWell(
-                onTap: () {
-                  Navigator.pushNamed(context, "/offer", arguments: {
-                    "index": index,
-                    "offer": state.offers[index],
-                  });
-                },
-                child: Container(
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(
-                      color: Colors.grey,
-                    ),
+          body: state.offers.isEmpty
+              ? Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Text(
+                        "Пока заказов нет",
+                        style: TextStyle(fontSize: 20),
+                      ),
+                      Container(
+                        margin: EdgeInsets.all(20),
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, "/cart");
+                          },
+                          style: TextButton.styleFrom(
+                            backgroundColor:
+                                const Color.fromARGB(255, 211, 138, 27),
+                            textStyle: Theme.of(context).textTheme.labelLarge,
+                          ),
+                          child: const Text(
+                            "Корзина",
+                            style: TextStyle(
+                              fontSize: 25,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
                   ),
-                  child: Center(
-                    child: Text(
-                      "Заказ №${index + 1}",
-                      style: const TextStyle(
-                          color: Colors.grey,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 17),
+                )
+              : ListView.builder(
+                  itemCount: state.offers.length,
+                  itemBuilder: (context, index) => Container(
+                    margin: const EdgeInsets.all(10),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, "/offer", arguments: {
+                          "index": index,
+                          "offer": state.offers[index],
+                        });
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(
+                            color: Colors.grey,
+                          ),
+                        ),
+                        child: Center(
+                          child: Text(
+                            "Заказ №${index + 1}",
+                            style: const TextStyle(
+                                color: Colors.grey,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 17),
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ),
-          ),
           bottomNavigationBar: const NavBar(id: 1),
         );
       }

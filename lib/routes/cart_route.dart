@@ -138,7 +138,9 @@ class _CartRouteState extends State<CartRoute> {
           TextButton(
             style: TextButton.styleFrom(
               backgroundColor: const Color.fromARGB(255, 211, 138, 27),
-              textStyle: Theme.of(context).textTheme.labelLarge,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
             ),
             child: const Text(
               "Заберу сам",
