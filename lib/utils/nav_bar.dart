@@ -25,7 +25,7 @@ class _NavBarState extends State<NavBar> {
       labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
       selectedIndex: widget.id,
       onDestinationSelected: (int index) =>
-          Navigator.pushNamed(context, kRouteToId[index]!),
+          Navigator.pushReplacementNamed(context, kRouteToId[index]!),
       destinations: const <Widget>[
         NavigationDestination(
           icon: Icon(Icons.notification_important),

@@ -29,7 +29,7 @@ class _CartRouteState extends State<CartRoute> {
               actions: [
                 IconButton(
                   onPressed: () =>
-                      Navigator.pushNamed(context, "/personalData"),
+                      Navigator.pushReplacementNamed(context, "/personalData"),
                   icon: const Icon(
                     Icons.account_circle,
                     color: Colors.white,

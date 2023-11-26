@@ -24,7 +24,7 @@ class _ProductsRouteState extends State<ProductsRoute> {
           appBar: AppBar(
             actions: [
               IconButton(
-                onPressed: () => Navigator.pushNamed(context, "/personalData"),
+                onPressed: () => Navigator.pushReplacementNamed(context, "/personalData"),
                 icon: const Icon(
                   Icons.account_circle,
                   color: Colors.white,
