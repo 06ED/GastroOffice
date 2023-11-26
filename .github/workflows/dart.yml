@@ -28,6 +28,7 @@ jobs:
     - run: flutter build apk --release
     - uses: "marvinpinto/action-automatic-releases@latest"
       with:
+        prerelease: false
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
         automatic_release_tag: "latest"
         title: "Latest Build"
