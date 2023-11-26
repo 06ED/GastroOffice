@@ -135,7 +135,7 @@ class _CartRouteState extends State<CartRoute> {
             ),
             onPressed: () async {
               _addOrder(true)
-                  .then((value) => Navigator.pushNamed(context, "/offerList"));
+                  .then((value) => Navigator.pushReplacementNamed(context, "/offerList"));
             },
           ),
           TextButton(
@@ -154,7 +154,7 @@ class _CartRouteState extends State<CartRoute> {
             ),
             onPressed: () {
               _addOrder(false)
-                  .then((value) => Navigator.pushNamed(context, "/offerList"));
+                  .then((value) => Navigator.pushReplacementNamed(context, "/offerList"));
             },
           ),
         ],
