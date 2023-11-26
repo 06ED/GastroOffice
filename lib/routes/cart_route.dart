@@ -28,7 +28,8 @@ class _CartRouteState extends State<CartRoute> {
             appBar: AppBar(
               actions: [
                 IconButton(
-                  onPressed: () => Navigator.pushNamed(context, "/personalData"),
+                  onPressed: () =>
+                      Navigator.pushNamed(context, "/personalData"),
                   icon: const Icon(
                     Icons.account_circle,
                     color: Colors.white,
@@ -121,7 +122,9 @@ class _CartRouteState extends State<CartRoute> {
           TextButton(
             style: TextButton.styleFrom(
               backgroundColor: const Color.fromARGB(255, 211, 138, 27),
-              textStyle: Theme.of(context).textTheme.labelLarge,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
             ),
             child: const Text(
               "Доставить",

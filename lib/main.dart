@@ -35,8 +35,7 @@ class GastroOfficeApp extends StatelessWidget {
           ),
         ),
         fontFamily: "KyivType",
-        colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color.fromARGB(255, 211, 138, 27)),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
         useMaterial3: true,
       ),
       initialRoute: "/main",
