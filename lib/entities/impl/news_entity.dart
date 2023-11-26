@@ -9,7 +9,7 @@ class NewsEntity extends Entity {
   final String photoId;
 
   Image get image => Image.network(
-        photoId,
+        "$kServerUrl/photos/download?id=$photoId",
         fit: BoxFit.cover,
         width: double.infinity,
       );
@@ -20,4 +20,13 @@ class NewsEntity extends Entity {
     required this.description,
     required this.photoId,
   });
+
+  static NewsEntity fromJson(Map mapEntity) {
+    return NewsEntity(
+      id: mapEntity["id"],
+      title: mapEntity["title"],
+      description: mapEntity["body"],
+      photoId: mapEntity["photo_id"],
+    );
+  }
 }

@@ -164,8 +164,9 @@ class _PersonalDataRouteState extends State<PersonalDataRoute> {
                 ),
               ),
               onPressed: () {
-                _changeData(user).then(
-                    (value) => Navigator.pushNamed(context, "/personalData"));
+                _changeData(user).then((value) {
+                  Navigator.pop(context);
+                });
               },
             ),
             TextButton(
@@ -208,8 +209,10 @@ class _PersonalDataRouteState extends State<PersonalDataRoute> {
                     );
                     break;
                 }
-                _changeData(newUser).then(
-                    (value) => Navigator.pushNamed(context, "/personalData"));
+                _changeData(newUser).then((value) {
+                  Navigator.pop(context);
+                  Navigator.popAndPushNamed(context, "/personalData");
+                });
               },
             ),
           ],
