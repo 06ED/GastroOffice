@@ -26,6 +26,15 @@ class _PersonalDataRouteState extends State<PersonalDataRoute> {
       if (state is PersonalDataInitState) {
         return Scaffold(
           appBar: AppBar(
+            leading: IconButton(
+              onPressed: () {
+                Navigator.pushReplacementNamed(context, "/main");
+              },
+              icon: const Icon(
+                Icons.arrow_back_ios,
+                color: Colors.white,
+              ),
+            ),
             title: const Text("Личный кабинет"),
           ),
           body: Center(
@@ -148,7 +157,11 @@ class _PersonalDataRouteState extends State<PersonalDataRoute> {
           title: const Text('Изменение данных'),
           content: TextField(
             controller: _textFieldController,
-            decoration: const InputDecoration(hintText: "Введите"),
+            decoration: const InputDecoration(
+              hintText: "Введите",
+            ),
+            keyboardType:
+                _boolSelect[1] ? TextInputType.number : TextInputType.name,
           ),
           actions: <Widget>[
             TextButton(
@@ -210,8 +223,7 @@ class _PersonalDataRouteState extends State<PersonalDataRoute> {
                     break;
                 }
                 _changeData(newUser).then((value) {
-                  Navigator.pop(context);
-                  Navigator.popAndPushNamed(context, "/personalData");
+                  Navigator.pushReplacementNamed(context, "/personalData");
                 });
               },
             ),
