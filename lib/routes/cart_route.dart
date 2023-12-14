@@ -10,6 +10,7 @@ import 'package:path_provider/path_provider.dart';
 
 import '../api/http_client.dart';
 import '../entities/impl/product_entity.dart';
+import '../utils/delivery_mode.dart';
 
 class CartRoute extends StatefulWidget {
   const CartRoute({super.key});
@@ -110,6 +111,15 @@ class _CartRouteState extends State<CartRoute> {
     );
   }
 
+  ButtonStyle _getDialogButtonStyle() {
+    return TextButton.styleFrom(
+      backgroundColor: const Color.fromARGB(255, 211, 138, 27),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+    );
+  }
+
   Future<void> _getDialog() {
     return showDialog<void>(
       context: context,
@@ -120,12 +130,7 @@ class _CartRouteState extends State<CartRoute> {
         ),
         actions: [
           TextButton(
-            style: TextButton.styleFrom(
-              backgroundColor: const Color.fromARGB(255, 211, 138, 27),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
+            style: _getDialogButtonStyle(),
             child: const Text(
               "Доставить",
               style: TextStyle(
@@ -134,17 +139,12 @@ class _CartRouteState extends State<CartRoute> {
               ),
             ),
             onPressed: () async {
-              _addOrder(true)
+              _addOrder(DeliveryMode.table)
                   .then((value) => Navigator.pushReplacementNamed(context, "/offerList"));
             },
           ),
           TextButton(
-            style: TextButton.styleFrom(
-              backgroundColor: const Color.fromARGB(255, 211, 138, 27),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
+            style: _getDialogButtonStyle(),
             child: const Text(
               "Заберу сам",
               style: TextStyle(
@@ -153,7 +153,21 @@ class _CartRouteState extends State<CartRoute> {
               ),
             ),
             onPressed: () {
-              _addOrder(false)
+              _addOrder(DeliveryMode.disabled)
+                  .then((value) => Navigator.pushReplacementNamed(context, "/offerList"));
+            },
+          ),
+          TextButton(
+            style: _getDialogButtonStyle(),
+            child: const Text(
+              "В контейнер",
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            onPressed: () {
+              _addOrder(DeliveryMode.container)
                   .then((value) => Navigator.pushReplacementNamed(context, "/offerList"));
             },
           ),
@@ -162,7 +176,7 @@ class _CartRouteState extends State<CartRoute> {
     );
   }
 
-  Future<void> _addOrder(bool delivery) async {
+  Future<void> _addOrder(DeliveryMode delivery) async {
     final root = await getTemporaryDirectory();
     final file = File("${root.path}/cart.json");
     final orgFile = File("${root.path}/organization.json");
@@ -175,7 +189,7 @@ class _CartRouteState extends State<CartRoute> {
           headers: {"content-type": "application/json"},
           body: jsonEncode({
             "dishes_id": jsonList.map((e) => e["id"]).toList(),
-            "delivery": delivery,
+            "delivery": delivery.id,
             "organization_id": jsonDecode(await orgFile.readAsString())["id"],
           }));
 
