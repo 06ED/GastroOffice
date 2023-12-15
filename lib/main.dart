@@ -38,7 +38,7 @@ class GastroOfficeApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
         useMaterial3: true,
       ),
-      initialRoute: "/main",
+      initialRoute: "/news",
       routes: kRoutes,
     );
   }

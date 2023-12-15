@@ -5,21 +5,21 @@ import 'package:loading_animations/loading_animations.dart';
 import '../entities/impl/product_entity.dart';
 import '../utils/nav_bar.dart';
 
-class OfferRoute extends StatefulWidget {
-  final OrderEntity offer;
+class OrderRoute extends StatefulWidget {
+  final OrderEntity order;
   final int index;
 
-  const OfferRoute({
+  const OrderRoute({
     super.key,
-    required this.offer,
+    required this.order,
     required this.index,
   });
 
   @override
-  State<OfferRoute> createState() => _OfferRouteState();
+  State<OrderRoute> createState() => _OrderRouteState();
 }
 
-class _OfferRouteState extends State<OfferRoute> {
+class _OrderRouteState extends State<OrderRoute> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +27,8 @@ class _OfferRouteState extends State<OfferRoute> {
         title: Text("Заказ №${widget.index + 1}"),
         actions: [
           IconButton(
-            onPressed: () => Navigator.pushReplacementNamed(context, "/personalData"),
+            onPressed: () =>
+                Navigator.pushReplacementNamed(context, "/personalData"),
             icon: const Icon(
               Icons.account_circle,
               color: Colors.white,
@@ -42,23 +43,23 @@ class _OfferRouteState extends State<OfferRoute> {
           children: [
             Expanded(
               child: ListView.builder(
-                itemCount: widget.offer.products.length,
+                itemCount: widget.order.products.length,
                 itemBuilder: (context, index) => _buildItem(
-                  widget.offer.products[index],
+                  widget.order.products[index],
                 ),
               ),
             ),
             Container(
               padding: const EdgeInsets.all(20),
               margin: const EdgeInsets.all(30),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10)),
+              decoration:
+                  BoxDecoration(borderRadius: BorderRadius.circular(10)),
               child: Column(
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      !widget.offer.isCompleted
+                      !widget.order.isCompleted
                           ? LoadingBouncingGrid.circle(
                               size: 30,
                               borderColor: Colors.black,
@@ -69,7 +70,7 @@ class _OfferRouteState extends State<OfferRoute> {
                               color: Colors.black,
                             ),
                       Text(
-                        !widget.offer.isCompleted
+                        !widget.order.isCompleted
                             ? "  Готовим..."
                             : "  Заказ готов",
                         style: const TextStyle(
@@ -83,29 +84,32 @@ class _OfferRouteState extends State<OfferRoute> {
                 ],
               ),
             ),
+            widget.order.lockerNumber != null
+                ? _getRow("Локер №", widget.order.lockerNumber.toString())
+                : const Column(),
             _getRow(
                 "Итог",
-                widget.offer.products
+                widget.order.products
                     .fold(0.0, (p, c) => p + c.cost)
                     .toString()),
             _getRow(
                 "Калории",
-                widget.offer.products
+                widget.order.products
                     .fold(0.0, (p, c) => p + c.calories)
                     .toString()),
             _getRow(
                 "Белки",
-                widget.offer.products
+                widget.order.products
                     .fold(0.0, (p, c) => p + c.proteins)
                     .toString()),
             _getRow(
                 "Жиры",
-                widget.offer.products
+                widget.order.products
                     .fold(0.0, (p, c) => p + c.fats)
                     .toString()),
             _getRow(
                 "Углеводы",
-                widget.offer.products
+                widget.order.products
                     .fold(0.0, (p, c) => p + c.carbohydrates)
                     .toString()),
           ],

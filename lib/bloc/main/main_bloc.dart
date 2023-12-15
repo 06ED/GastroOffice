@@ -1,16 +1,15 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:gastro_office/api/http_client.dart';
-import 'package:gastro_office/entities/impl/organization_entity.dart';
 import 'package:path_provider/path_provider.dart';
 
 import '../../entities/impl/category_entity.dart';
 import '../../entities/impl/product_entity.dart';
+import '../../entities/impl/provider_entity.dart';
 
 part 'main_event.dart';
 

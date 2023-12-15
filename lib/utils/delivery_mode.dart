@@ -1,7 +1,6 @@
 enum DeliveryMode {
-  disabled(1),
-  table(2),
-  container(3);
+  table(1),
+  container(2);
 
   final int id;
 

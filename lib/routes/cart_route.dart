@@ -146,20 +146,6 @@ class _CartRouteState extends State<CartRoute> {
           TextButton(
             style: _getDialogButtonStyle(),
             child: const Text(
-              "Заберу сам",
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            onPressed: () {
-              _addOrder(DeliveryMode.disabled)
-                  .then((value) => Navigator.pushReplacementNamed(context, "/offerList"));
-            },
-          ),
-          TextButton(
-            style: _getDialogButtonStyle(),
-            child: const Text(
               "В контейнер",
               style: TextStyle(
                 color: Colors.white,

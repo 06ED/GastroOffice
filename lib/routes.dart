@@ -5,8 +5,8 @@ import 'package:gastro_office/routes/cart_route.dart';
 import 'package:gastro_office/routes/main_route.dart';
 import 'package:gastro_office/routes/news_list_route.dart';
 import 'package:gastro_office/routes/news_route.dart';
-import 'package:gastro_office/routes/offer_list_route.dart';
-import 'package:gastro_office/routes/offer_route.dart';
+import 'package:gastro_office/routes/order_list_route.dart';
+import 'package:gastro_office/routes/order_route.dart';
 import 'package:gastro_office/routes/personal_data_route.dart';
 import 'package:gastro_office/routes/product_route.dart';
 import 'package:gastro_office/routes/select_organisation_route.dart';
@@ -22,8 +22,8 @@ final kRoutes = {
   "/offer": (context) {
     final arguments = (ModalRoute.of(context)?.settings.arguments ??
         <String, dynamic>{}) as Map;
-    return OfferRoute(
-      offer: arguments["offer"],
+    return OrderRoute(
+      order: arguments["offer"],
       index: arguments["index"],
     );
   },
@@ -40,15 +40,21 @@ final kRoutes = {
             SelectOrganizationBloc()..add(SelectOrganizationInitEvent()),
         child: const SelectOrganizationRoute(),
       ),
-  "/personalData": (context) => BlocProvider(
-        create: (context) =>
-            PersonalDataBloc()..add(PersonalDataInitEvent()),
-        child: const PersonalDataRoute(),
-      ),
-  "/main": (context) => BlocProvider(
-        create: (context) => MainBloc()..add(MainInitEvent()),
-        child: const MainRoute(),
-      ),
+  "/personalData": (context) {
+    return BlocProvider(
+      create: (context) => PersonalDataBloc()..add(PersonalDataInitEvent()),
+      child: const PersonalDataRoute(),
+    );
+  },
+  "/main": (context) {
+    final arguments = (ModalRoute.of(context)?.settings.arguments ??
+        <String, dynamic>{}) as Map;
+    return BlocProvider(
+      create: (context) =>
+          MainBloc()..add(MainInitEvent(provider: arguments["provider"])),
+      child: const MainRoute(),
+    );
+  },
   "/cart": (context) => BlocProvider(
         create: (context) => CartBloc()..add(CartInitEvent()),
         child: const CartRoute(),

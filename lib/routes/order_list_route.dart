@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gastro_office/bloc/offer_list/offer_list_bloc.dart';
@@ -43,7 +41,7 @@ class _OfferListRouteState extends State<OfferListRoute> {
                         style: TextStyle(fontSize: 20),
                       ),
                       Container(
-                        margin: EdgeInsets.all(20),
+                        margin: const EdgeInsets.all(20),
                         child: TextButton(
                           onPressed: () {
                             Navigator.pushNamed(context, "/cart");
